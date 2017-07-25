@@ -1,0 +1,167 @@
+<div class="container" >
+    <div class="row">
+        <div class="col-md-3 col-sm-6" *ngIf="progress" >
+            <div class="progress blue">
+                <span class="progress-left">
+                    <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">{{progress}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<div class="form-wrapper">
+<div class="my-form">
+<div class="col-sm-6 no-padding">
+<div class="info">
+<div id="carousel-id" class="carousel slide" data-ride="carousel">
+<ol class="carousel-indicators">
+<li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+<li data-target="#carousel-id" data-slide-to="1" class=""></li>
+<li data-target="#carousel-id" data-slide-to="2" class=""></li>
+</ol>
+<div class="carousel-inner">
+<div class="item">
+<img src="https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/envelope-2-128.png" class="img-responsive center-block" alt="">
+<div class="container">
+<div class="carousel-caption">
+<p>Make the World a Better Place!</p>
+
+</div>
+</div>
+</div>
+<div class="item">
+<img src="https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/cup-128.png" class="img-responsive center-block" alt="">
+<div class="container">
+<div class="carousel-caption">
+<p>Make the World a Better Place!</p>
+
+</div>
+</div>
+</div>
+<div class="item active">
+<img src="https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/headphone-big-128.png" class="img-responsive center-block" alt="">
+<div class="container">
+<div class="carousel-caption">
+<p>Make the World a Better Place!</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-sm-6 form-bg">
+<div class="main-form">
+<div role="tabpanel">
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+<li role="presentation" class="active">
+<a href="#login" aria-controls="login" role="tab" data-toggle="tab">Sign Up</a>
+</li>
+<li role="presentation">
+<a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Users</a>
+</li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="login">
+ <form [formGroup]="userForm" novalidate>
+        <div class="form-group">
+            <input type="text" formControlName="fullName" placeholder="Full Name" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="username" placeholder="Username" class="form-control">
+            <div [hidden]="userForm.controls['username'].valid" class="required">
+                Username is mandatory*
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" formControlName="password" (keyup)="passwordvalidation()" placeholder="Password" class="form-control">
+            <div [hidden]="userForm.controls['password'].valid" class="required">
+                Password is mandatory*
+            </div>
+            <div *ngIf="passvalidateMsg" [ngClass]="{'required':passwordLen < 5,'medium':passwordLen > 4 && passwordLen < 7,'stronge':passwordLen >= 7}">
+                {{passvalidateMsg}}
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="email" formControlName="email" placeholder="Email" class="form-control">
+            <div [hidden]="!userForm.controls['email'].hasError('required')" class="required">
+                Email is mandatory*
+            </div>
+            <div [hidden]="!userForm.controls['email'].hasError('pattern')" class="required">
+                Enter valid mandatory*
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btnColor" (click)="submit()"  [disabled]="userForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+<div role="tabpanel" class="tab-pane" id="signup">
+<table class="table tableData">
+        <thead>
+            <tr>
+                <th style="color: #fc80b2">Name</th>
+                <th style="color: #fc80b2">Username</th>
+                <th style="color: #fc80b2">Email</th>
+                <th style="color: #fc80b2">Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList,let i = index">
+                <td style="color: #12aaeb;">{{user.fullName}}</td>
+                <td style="color: #12aaeb;">{{user.username}}</td>
+                <td style="color: #12aaeb;">{{user.email}}</td>
+                <td style="color: #12aaeb;">{{user.password}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- <div class="progress" >
+    <div class="progress-bar progressBar" role="progressbar" [style.width]=" progress + '%'">
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $('input,textarea').focus(function(){
+   $(this).data('placeholder',$(this).attr('placeholder'))
+   $(this).attr('placeholder','');
+});
+$('input,textarea').blur(function(){
+   $(this).attr('placeholder',$(this).data('placeholder'));
+});
+</script>
+<!-- Placed at the end of the document so the pages load faster -->
+ <!-- Latest compiled and minified CSS -->
+
+

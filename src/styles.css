@@ -1,0 +1,5 @@
+@import '../src/assets/css/bootstrap.min.css';
+@import '../src/assets/font-awesome/css/font-awesome.min.css';
+body{
+    background-color:#f2f5f7;
+}
