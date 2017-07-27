@@ -2,6 +2,7 @@ import {Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +10,8 @@ import {Observable} from 'rxjs/Rx';
 })
 export class AppComponent implements OnInit {
     public userForm: FormGroup;
+    public isEdit=false;
+    public EditIndex;
     public userList = [];
     public passvalidateMsg;
     public passwordLen;
@@ -26,14 +29,17 @@ export class AppComponent implements OnInit {
         this.timerSub=Observable.timer(100,25);
     }
     submit(){
-        let sub =this.timerSub.subscribe(t => {            
+         let sub =this.timerSub.subscribe(t => {            
             this.progress = t;
             if(this.progress == 100){
                 sub.unsubscribe();
-                
+                if (this.isEdit){
+                    this.SaveEdit();
+                }
+                else{
                     this.userList.push(this.userForm.value);
                     this.userForm.reset();
-                               
+                }                
                 this.progress = null;
                 this.passvalidateMsg='';
             }
@@ -52,5 +58,24 @@ export class AppComponent implements OnInit {
         }else{
             this.passvalidateMsg="Strong password"
         }
+    }
+     DeleteRecord(index){
+        this.userList.splice(index, 1);
+        {
+        alert("User is going to be Deleted");
+        }
+        
+    }
+    EditRecord(index){
+        this.userForm.setValue(this.userList[index]);
+        this.EditIndex = index;
+        this.isEdit = true;
+    }
+    SaveEdit(){
+        this.userList[this.EditIndex] = this.userForm.value;
+        this.userForm.reset();
+        this.isEdit = false;
+        alert("User Sucessfully Edited");
+        
     }
 }
