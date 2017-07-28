@@ -45,6 +45,18 @@ export class AppComponent implements OnInit {
             }
         });
     }
+     EditRecord(index){
+        this.userForm.setValue(this.userList[index]);
+        this.EditIndex = index;
+        this.isEdit = true;
+        alert("Going back to SignUp Page and Edit USER")
+    }
+    SaveEdit(){
+        this.userList[this.EditIndex] = this.userForm.value;
+        this.userForm.reset();
+        this.isEdit = false;
+        alert("User Sucessfully Edited");    
+    }
     passwordvalidation(){
         let password = this.userForm.controls['password'].value;
         if (password!=null)
@@ -66,16 +78,5 @@ export class AppComponent implements OnInit {
         }
         
     }
-    EditRecord(index){
-        this.userForm.setValue(this.userList[index]);
-        this.EditIndex = index;
-        this.isEdit = true;
-    }
-    SaveEdit(){
-        this.userList[this.EditIndex] = this.userForm.value;
-        this.userForm.reset();
-        this.isEdit = false;
-        alert("User Sucessfully Edited");
-        
-    }
+   
 }

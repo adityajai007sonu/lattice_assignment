@@ -105,34 +105,35 @@
 </div>
 
 
-<div role="tabpanel" class="tab-pane" id="signup">
-<table class="table tableData">
-        <thead>
-            <tr>
-                <th style="color: #fc80b2">Name</th>
-                <th style="color: #fc80b2">Username</th>
-                <th style="color: #fc80b2">Email</th>
-                <th style="color: #fc80b2">Password</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of userList,let i = index">
-                <td style="color: #12aaeb;">{{user.fullName}}</td>
-                <td style="color: #12aaeb;">{{user.username}}</td>
-                <td style="color: #12aaeb;">{{user.email}}</td>
-                <td style="color: #12aaeb;">{{user.password}}</td>
-                <td>
-                      <a>
-                        <i class="fa fa-edit" style="font-size: 160%;color: #12aaeb;" data-toggle="modal" data-target="#forget-pass-modal" (click)="EditRecord(i)"></i>
-                    </a> &nbsp;&nbsp;&nbsp;
-                    <a>
-                        <i class="fa fa-trash" style="font-size: 160%;color: #12aaeb;"   (click)="DeleteRecord(i)"></i>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div role="tabpanel" class="tab-pane" id="signup">
+        <table class="table tableData">
+            <thead>
+                <tr>
+                    <th style="color: #fc80b2">Name</th>
+                    <th style="color: #fc80b2">Username</th>
+                    <th style="color: #fc80b2">Email</th>
+                    <th style="color: #fc80b2">Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of userList,let i = index">
+                    <td style="color: #12aaeb;">{{user.fullName}}</td>
+                    <td style="color: #12aaeb;">{{user.username}}</td>
+                    <td style="color: #12aaeb;">{{user.email}}</td>
+                    <td style="color: #12aaeb;">{{user.password}}</td>
+                    <td>
+
+                          <a href="#login" class="active" aria-controls="login" role="tab" data-toggle="tab">
+                            <i class="fa fa-edit" style="font-size: 160%;color: #12aaeb;" (click)="EditRecord(i)"></i>
+                        </a> &nbsp;&nbsp;&nbsp;
+                        <a>
+                            <i class="fa fa-trash" style="font-size: 160%;color: #12aaeb;"   (click)="DeleteRecord(i)"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 </div>
@@ -148,14 +149,6 @@
     </div>
 </div> -->
 
-
-
-
-
-
-
-
-
 <script type="text/javascript">
     $('input,textarea').focus(function(){
    $(this).data('placeholder',$(this).attr('placeholder'))
@@ -167,83 +160,3 @@ $('input,textarea').blur(function(){
 </script>
 <!-- Placed at the end of the document so the pages load faster -->
  <!-- Latest compiled and minified CSS -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="forget-pass-modal" class="modal fade upload-documents" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"> Enter Your Emailid</h4>
-      </div>
-      <div class="modal-body">
-       <form [formGroup]="userForm" novalidate>
-        <div class="form-group">
-            <input type="text" formControlName="fullName" placeholder="Full Name" class="form-control">
-        </div>
-        <div class="form-group">
-            <input type="text" formControlName="username" placeholder="Username" class="form-control">
-            <div [hidden]="userForm.controls['username'].valid" class="required">
-                Username is mandatory*
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="password" formControlName="password" (keyup)="passwordvalidation()" placeholder="Password" class="form-control">
-            <div [hidden]="userForm.controls['password'].valid" class="required">
-                Password is mandatory*
-            </div>
-            <div *ngIf="passvalidateMsg" [ngClass]="{'required':passwordLen < 5,'medium':passwordLen > 4 && passwordLen < 7,'stronge':passwordLen >= 7}">
-                {{passvalidateMsg}}
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="email" formControlName="email" placeholder="Email" class="form-control">
-            <div [hidden]="!userForm.controls['email'].hasError('required')" class="required">
-                Email is mandatory*
-            </div>
-            <div [hidden]="!userForm.controls['email'].hasError('pattern')" class="required">
-                Enter valid mandatory*
-            </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary btnColor" (click)="submit()"  [disabled]="userForm.invalid" data-dismiss="myModal">Submit</button>
-        </div>
-        
-        <div class="col-md-3 col-sm-6" *ngIf="progress" >
-            <div class="progress blue">
-                <span class="progress-left">
-                    <span class="progress-bar"></span>
-                </span>
-                <span class="progress-right">
-                    <span class="progress-bar"></span>
-                </span>
-                <div class="progress-value">{{progress}}</div>
-            </div>
-        </div>
-    
-        <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </form>
-      </div>
-      
-    </div>
-
-  </div>
-</div>
